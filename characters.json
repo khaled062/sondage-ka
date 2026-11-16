@@ -1,0 +1,252 @@
+[
+  {
+    "id": "perso01",
+    "nom": "Personnage 1",
+    "image": "assets/characters/perso01.png"
+  },
+  {
+    "id": "perso02",
+    "nom": "Personnage 2",
+    "image": "assets/characters/perso02.png"
+  },
+  {
+    "id": "perso03",
+    "nom": "Personnage 3",
+    "image": "assets/characters/perso03.png"
+  },
+  {
+    "id": "perso04",
+    "nom": "Personnage 4",
+    "image": "assets/characters/perso04.png"
+  },
+  {
+    "id": "perso05",
+    "nom": "Personnage 5",
+    "image": "assets/characters/perso05.png"
+  },
+  {
+    "id": "perso06",
+    "nom": "Personnage 6",
+    "image": "assets/characters/perso06.png"
+  },
+  {
+    "id": "perso07",
+    "nom": "Personnage 7",
+    "image": "assets/characters/perso07.png"
+  },
+  {
+    "id": "perso08",
+    "nom": "Personnage 8",
+    "image": "assets/characters/perso08.png"
+  },
+  {
+    "id": "perso09",
+    "nom": "Personnage 9",
+    "image": "assets/characters/perso09.png"
+  },
+  {
+    "id": "perso10",
+    "nom": "Personnage 10",
+    "image": "assets/characters/perso10.png"
+  },
+  {
+    "id": "perso11",
+    "nom": "Personnage 11",
+    "image": "assets/characters/perso11.png"
+  },
+  {
+    "id": "perso12",
+    "nom": "Personnage 12",
+    "image": "assets/characters/perso12.png"
+  },
+  {
+    "id": "perso13",
+    "nom": "Personnage 13",
+    "image": "assets/characters/perso13.png"
+  },
+  {
+    "id": "perso14",
+    "nom": "Personnage 14",
+    "image": "assets/characters/perso14.png"
+  },
+  {
+    "id": "perso15",
+    "nom": "Personnage 15",
+    "image": "assets/characters/perso15.png"
+  },
+  {
+    "id": "perso16",
+    "nom": "Personnage 16",
+    "image": "assets/characters/perso16.png"
+  },
+  {
+    "id": "perso17",
+    "nom": "Personnage 17",
+    "image": "assets/characters/perso17.png"
+  },
+  {
+    "id": "perso18",
+    "nom": "Personnage 18",
+    "image": "assets/characters/perso18.png"
+  },
+  {
+    "id": "perso19",
+    "nom": "Personnage 19",
+    "image": "assets/characters/perso19.png"
+  },
+  {
+    "id": "perso20",
+    "nom": "Personnage 20",
+    "image": "assets/characters/perso20.png"
+  },
+  {
+    "id": "perso21",
+    "nom": "Personnage 21",
+    "image": "assets/characters/perso21.png"
+  },
+  {
+    "id": "perso22",
+    "nom": "Personnage 22",
+    "image": "assets/characters/perso22.png"
+  },
+  {
+    "id": "perso23",
+    "nom": "Personnage 23",
+    "image": "assets/characters/perso23.png"
+  },
+  {
+    "id": "perso24",
+    "nom": "Personnage 24",
+    "image": "assets/characters/perso24.png"
+  },
+  {
+    "id": "perso25",
+    "nom": "Personnage 25",
+    "image": "assets/characters/perso25.png"
+  },
+  {
+    "id": "perso26",
+    "nom": "Personnage 26",
+    "image": "assets/characters/perso26.png"
+  },
+  {
+    "id": "perso27",
+    "nom": "Personnage 27",
+    "image": "assets/characters/perso27.png"
+  },
+  {
+    "id": "perso28",
+    "nom": "Personnage 28",
+    "image": "assets/characters/perso28.png"
+  },
+  {
+    "id": "perso29",
+    "nom": "Personnage 29",
+    "image": "assets/characters/perso29.png"
+  },
+  {
+    "id": "perso30",
+    "nom": "Personnage 30",
+    "image": "assets/characters/perso30.png"
+  },
+  {
+    "id": "perso31",
+    "nom": "Personnage 31",
+    "image": "assets/characters/perso31.png"
+  },
+  {
+    "id": "perso32",
+    "nom": "Personnage 32",
+    "image": "assets/characters/perso32.png"
+  },
+  {
+    "id": "perso33",
+    "nom": "Personnage 33",
+    "image": "assets/characters/perso33.png"
+  },
+  {
+    "id": "perso34",
+    "nom": "Personnage 34",
+    "image": "assets/characters/perso34.png"
+  },
+  {
+    "id": "perso35",
+    "nom": "Personnage 35",
+    "image": "assets/characters/perso35.png"
+  },
+  {
+    "id": "perso36",
+    "nom": "Personnage 36",
+    "image": "assets/characters/perso36.png"
+  },
+  {
+    "id": "perso37",
+    "nom": "Personnage 37",
+    "image": "assets/characters/perso37.png"
+  },
+  {
+    "id": "perso38",
+    "nom": "Personnage 38",
+    "image": "assets/characters/perso38.png"
+  },
+  {
+    "id": "perso39",
+    "nom": "Personnage 39",
+    "image": "assets/characters/perso39.png"
+  },
+  {
+    "id": "perso40",
+    "nom": "Personnage 40",
+    "image": "assets/characters/perso40.png"
+  },
+  {
+    "id": "perso41",
+    "nom": "Personnage 41",
+    "image": "assets/characters/perso41.png"
+  },
+  {
+    "id": "perso42",
+    "nom": "Personnage 42",
+    "image": "assets/characters/perso42.png"
+  },
+  {
+    "id": "perso43",
+    "nom": "Personnage 43",
+    "image": "assets/characters/perso43.png"
+  },
+  {
+    "id": "perso44",
+    "nom": "Personnage 44",
+    "image": "assets/characters/perso44.png"
+  },
+  {
+    "id": "perso45",
+    "nom": "Personnage 45",
+    "image": "assets/characters/perso45.png"
+  },
+  {
+    "id": "perso46",
+    "nom": "Personnage 46",
+    "image": "assets/characters/perso46.png"
+  },
+  {
+    "id": "perso47",
+    "nom": "Personnage 47",
+    "image": "assets/characters/perso47.png"
+  },
+  {
+    "id": "perso48",
+    "nom": "Personnage 48",
+    "image": "assets/characters/perso48.png"
+  },
+  {
+    "id": "perso49",
+    "nom": "Personnage 49",
+    "image": "assets/characters/perso49.png"
+  },
+  {
+    "id": "perso50",
+    "nom": "Personnage 50",
+    "image": "assets/characters/perso50.png"
+  }
+]

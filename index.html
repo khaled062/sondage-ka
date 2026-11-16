@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <button type="button" class="btn-son" id="btn-son" aria-pressed="true"></button>
+
+  <header class="barre" id="barre" hidden>
+    <button type="button" class="btn-petit" id="btn-arriere"></button>
+    <p class="barre-titre" data-titre></p>
+    <span class="etape" id="etape"></span>
+    <label class="recherche">
+      <i data-lucide="search"></i>
+      <input id="recherche" type="search" placeholder="Chercher un perso…" autocomplete="off" aria-label="Chercher un personnage par son nom">
+      <span class="recherche-info" id="recherche-info"></span>
+    </label>
+  </header>
+
+  <main>
+    <section id="ecran-chargement" class="ecran centre"><p>Chargement du dossier…</p></section>
+
+    <section id="ecran-intro" class="ecran" hidden>
+      <button type="button" class="intro" id="intro">
+        <span class="intro-texte" id="intro-texte"></span>
+        <span class="logo">
+          <span class="logo-ligne logo-haut" id="logo-haut"></span>
+          <span class="logo-ligne logo-bas" id="logo-bas"></span>
+        </span>
+        <span class="intro-clic">Cliquez pour continuer</span>
+      </button>
+    </section>
+
+    <section id="ecran-message" class="ecran centre message" hidden>
+      <div class="scene">
+        <div class="scene-nom"></div>
+        <p class="scene-texte" id="message-texte"></p>
+      </div>
+    </section>
+
+    <section id="ecran-accueil" class="ecran centre" hidden>
+      <div class="scene">
+        <div class="scene-nom"></div>
+        <p class="scene-texte" id="regles-texte" aria-live="polite"></p>
+      </div>
+      <div class="scene-boutons">
+        <span class="scene-page" id="regles-page"></span>
+        <button type="button" class="btn-petit" id="regles-prec">◄ Précédent</button>
+        <button type="button" class="btn-petit" id="regles-passer">Passer</button>
+        <button type="button" class="btn" id="regles-suiv">Suivant</button>
+      </div>
+    </section>
+
+    <section id="ecran-grille" class="ecran" hidden>
+      <div class="zone-grille">
+        <h2 class="dossier-titre">Dossier du tribunal</h2>
+        <p class="consigne" id="consigne"></p>
+        <div class="grille" id="grille"></div>
+        <div class="fin-grille" id="fin-grille">— Fin du dossier —</div>
+      </div>
+
+      <aside class="panneau" id="panneau" hidden>
+        <button type="button" class="panneau-tete" id="panneau-tete" aria-expanded="false" aria-controls="panneau-corps">
+          <span>Mon classement</span>
+          <span class="compteur" id="compteur"></span>
+          <i data-lucide="chevron-up" class="chevron"></i>
+        </button>
+        <div class="panneau-corps" id="panneau-corps">
+          <p class="vide" id="liste-vide">Clique sur les cartes pour les classer : la 1re cliquée sera ta n°1.</p>
+          <ol class="liste" id="liste"></ol>
+        </div>
+        <button type="button" class="btn" id="btn-voter" disabled>Voter</button>
+      </aside>
+
+      <div class="barre-bas" id="barre-vu" hidden>
+        <button type="button" class="btn btn-grand" id="btn-vu">J'ai tout vu, je commence à voter</button>
+      </div>
+    </section>
+
+    <section id="ecran-confirm" class="ecran" hidden>
+      <h2>Ton classement final</h2>
+      <p class="consigne" id="recap-compte"></p>
+      <ol class="recap" id="recap"></ol>
+      <div class="confirm-zone">
+        <div class="scene">
+          <div class="scene-nom"></div>
+          <p class="scene-texte" id="confirm-texte" aria-live="polite"></p>
+          <!-- choix sur la scène, comme les choix de dialogue du jeu -->
+          <div class="choix" id="choix" role="group" aria-label="Ta réponse" hidden>
+            <button type="button" class="choix-btn" id="btn-valider">Oui, je suis sûr</button>
+            <button type="button" class="choix-btn" id="btn-retour">Non, j'ai besoin de réfléchir encore</button>
+          </div>
+        </div>
+        <p class="erreur" id="confirm-erreur" role="alert" hidden></p>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="zoom" id="zoom" aria-label="Personnage agrandi">
+    <div class="zoom-carte">
+      <button type="button" class="zoom-fermer" id="zoom-fermer" aria-label="Fermer"><i data-lucide="x"></i></button>
+      <div class="carte-cadre"><img alt="" id="zoom-img"><span class="carte-vide" id="zoom-vide"></span></div>
+      <div class="zoom-nom" id="zoom-nom"></div>
+    </div>
+  </dialog>
+
+  <canvas class="portes" id="portes" width="1280" height="720" hidden aria-hidden="true"></canvas>
+  <div class="portes-texte" id="portes-texte" hidden>
+    <p><strong>Merci pour ton vote !</strong><br>Ton classement a bien été enregistré.</p>
+  </div>
+
+  <div class="take-that" id="take-that" hidden aria-hidden="true">
+    <div class="bulle" role="img" aria-label="Take that!"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/scoring.js"></script>
+  <script src="js/commun.js"></script>
+  <script src="js/vote.js"></script>
+</body>
+</html>

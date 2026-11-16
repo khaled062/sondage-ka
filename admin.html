@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Admin</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="admin">
+  <main>
+    <section id="ecran-connexion" class="ecran centre" hidden>
+      <h1 class="titre-logo" data-titre></h1>
+      <form class="boite dialogue formulaire" id="form-connexion">
+        <div class="boite-nom">Accès réservé</div>
+        <label>Email <input type="email" id="email" required autocomplete="username"></label>
+        <label>Mot de passe <input type="password" id="mdp" required autocomplete="current-password"></label>
+        <p class="erreur" id="connexion-erreur" role="alert" hidden></p>
+        <div class="dialogue-pied"><button class="btn" id="btn-connexion">Entrer</button></div>
+      </form>
+    </section>
+
+    <section id="ecran-admin" class="ecran" hidden>
+      <header class="admin-tete">
+        <h1 class="barre-titre" data-titre></h1>
+        <span class="etat" id="etat"></span>
+        <button type="button" class="btn btn-secondaire" id="btn-ouvrir"></button>
+        <button type="button" class="btn-petit" id="btn-recharger"><i data-lucide="refresh-cw"></i> Actualiser</button>
+        <button type="button" class="btn-petit" id="btn-deconnexion"><i data-lucide="log-out"></i> Déconnexion</button>
+      </header>
+      <nav class="admin-nav">
+        <a href="#s-classement">Classement</a><a href="#s-graphiques">Graphiques</a><a href="#s-votes">Votes</a><a href="#s-exports">Exports</a>
+      </nav>
+      <p class="erreur" id="admin-erreur" role="alert" hidden></p>
+
+      <div class="kpis" id="kpis"></div>
+
+      <section class="boite bloc" id="s-points">
+        <div class="boite-nom">Table des points</div>
+        <p class="consigne">Change les valeurs : le classement se recalcule tout de suite. Les votes enregistrés ne sont pas modifiés.</p>
+        <div class="points">
+          <label>1er <input type="number" step="any" min="0" data-rang="0"></label>
+          <label>2e <input type="number" step="any" min="0" data-rang="1"></label>
+          <label>3e <input type="number" step="any" min="0" data-rang="2"></label>
+          <label>4e <input type="number" step="any" min="0" data-rang="3"></label>
+          <label>Multiplicateur (5e et +) <input type="number" step="0.05" min="0" id="mult"></label>
+          <button type="button" class="btn-petit" id="btn-defaut">Valeurs par défaut</button>
+        </div>
+        <p class="apercu" id="apercu-points"></p>
+      </section>
+
+      <section class="boite bloc" id="s-classement">
+        <div class="boite-nom">Classement final</div>
+        <p class="consigne">Égalités départagées par : score, puis nb de top 1, de top 2, de votants, puis meilleur rang. Touche un perso pour voir le détail.</p>
+        <div class="tableau-defile">
+          <table class="tableau">
+            <thead><tr><th>Rang</th><th>Perso</th><th>Top 1</th><th>Top 2</th><th>Top 3</th><th>Votants</th><th>Score</th></tr></thead>
+            <tbody id="tableau"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="boite bloc" id="s-graphiques">
+        <div class="boite-nom">Graphiques</div>
+        <h3>Scores</h3>
+        <div class="graphique" id="g-scores-boite"><canvas id="g-scores"></canvas></div>
+        <h3>Répartition des rangs <small>(longueur de la barre = nombre de votants qui l'ont classé)</small></h3>
+        <div class="graphique" id="g-rangs-boite"><canvas id="g-rangs"></canvas></div>
+      </section>
+
+      <section class="boite bloc" id="s-votes">
+        <div class="boite-nom">Votes individuels</div>
+        <div class="votes" id="votes"></div>
+      </section>
+
+      <section class="boite bloc" id="s-exports">
+        <div class="boite-nom">Exports</div>
+        <p class="consigne">Fichiers CSV (s'ouvrent dans Excel, LibreOffice ou Google Sheets).</p>
+        <div class="dialogue-pied" style="justify-content:flex-start">
+          <button type="button" class="btn" id="btn-csv-resultats"><i data-lucide="download"></i> Résultats</button>
+          <button type="button" class="btn btn-secondaire" id="btn-csv-votes"><i data-lucide="download"></i> Votes bruts</button>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <dialog class="zoom detail" id="detail">
+    <div class="boite">
+      <button type="button" class="zoom-fermer" id="detail-fermer" aria-label="Fermer"><i data-lucide="x"></i></button>
+      <div class="boite-nom" id="detail-nom"></div>
+      <div id="detail-corps"></div>
+    </div>
+  </dialog>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/scoring.js"></script>
+  <script src="js/commun.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
