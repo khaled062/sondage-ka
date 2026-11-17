@@ -45,9 +45,9 @@ svg.lucide { width: 1.05em; height: 1.05em; vertical-align: -.15em; }
   border: 2px solid #000; box-shadow: 0 0 0 1px #3a4a5e;
 }
 .scene-perso { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity .8s; }
-/* Le juge a quitté le tribunal : pupitre vide, sans boîte de dialogue */
-.scene.parti .scene-perso, .scene.parti .scene-nom, .scene.parti .scene-texte { opacity: 0; }
-.scene.parti::after { opacity: 0; transition: opacity .8s; }
+/* Le juge quitte le tribunal (sa dernière phrase reste affichée) ; ensuite, pupitre vide sans boîte de dialogue */
+.scene.parti .scene-perso, .scene.vide .scene-perso, .scene.vide .scene-nom, .scene.vide .scene-texte { opacity: 0; }
+.scene.vide::after { opacity: 0; }
 .scene::after { /* boîte de dialogue d'objection.lol : bande noire semi-transparente */
   content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 25%; pointer-events: none;
   background: rgba(6, 6, 8, .94); /* noir presque opaque, comme sur objection.lol */

@@ -69,14 +69,37 @@ document.querySelectorAll('.scene').forEach(s => {
 });
 const sprite = el => el.closest('.scene').querySelector('.scene-perso');
 
-// Préchargement pendant l'écran titre : le juge, ses expressions et le marteau s'affichent ensuite sans attente.
-const PRECHARGES = [];
-function precharger() {
-  const gifs = new Set(Object.values(POSES).flatMap(p => p.slice(0, 3)));
-  [...[...gifs].map(n => JUGE + n + '.gif'), OL + 'Images/gavel.webp', OL + 'Images/Bubbles/3.png',
-    OL + 'Images/Backgrounds/Preset/%5BPW%5D%20Judge.jpg', OL + 'Images/UI/Chatbox/Trilogy/textbox.png',
-    OL + 'Images/evidence%20container.png']
-    .forEach(src => { const i = new Image(); i.src = src; PRECHARGES.push(i); });
+// ---------- Écran de chargement : tout est téléchargé avant de commencer ----------
+// (juge et expressions, décors, marteau, cartes des persos, portes, musique de l'écran titre)
+const IMAGES_DU_SITE = [
+  ...new Set(Object.values(POSES).flatMap(p => p.slice(0, 3)))].map(n => JUGE + n + '.gif').concat([
+  OL + 'Images/gavel.webp', OL + 'Images/Bubbles/3.png', OL + 'Images/Backgrounds/Preset/%5BPW%5D%20Judge.jpg',
+  OL + 'Images/Backgrounds/Preset/PW%20Courtroom.jpg', OL + 'Images/UI/Chatbox/Trilogy/textbox.png',
+  OL + 'Images/evidence%20container.png']);
+const GARDEES = []; // garde les images en mémoire pour qu'elles s'affichent sans attente
+function chargerImage(src) {
+  const i = new Image();
+  i.src = src;
+  GARDEES.push(i);
+  return i.decode().catch(() => {}); // une image en échec ne bloque pas le site
+}
+function musiquePrete(nom) {
+  const a = chargerMusique(nom);
+  if (a.readyState >= 4) return Promise.resolve();
+  // shortcut: iPhone ne télécharge pas l'audio avant un clic, d'où la limite de 6 s
+  return new Promise(ok => { a.addEventListener('canplaythrough', ok, { once: true }); a.addEventListener('error', ok, { once: true }); setTimeout(ok, 6000); });
+}
+// Attend tout, en affichant le pourcentage ; au bout de 25 s on commence quand même (connexion très lente).
+async function toutCharger(taches) {
+  const p = $('ecran-chargement').querySelector('p');
+  let faites = 0;
+  const maj = () => { p.textContent = `Chargement du dossier… ${Math.round(faites / taches.length * 100)} %`; };
+  maj();
+  montrer('chargement');
+  await Promise.race([
+    Promise.all(taches.map(t => Promise.resolve(t).catch(() => {}).then(() => { faites++; maj(); }))),
+    new Promise(ok => setTimeout(ok, 25000))
+  ]);
 }
 
 // ---------- Musiques de fond (volume doux, fondu enchaîné d'une seconde) ----------
@@ -272,12 +295,15 @@ async function demarrer() {
       const retours = (lire('sondage_retours') || 0) + 1;
       ecrire('sondage_retours', retours);
       const scene = $('message-texte').closest('.scene');
-      if (retours > RETOURS.length) { montrer('message'); scene.classList.add('parti'); return; } // plus personne
+      await toutCharger(IMAGES_DU_SITE.map(chargerImage));
+      if (retours > RETOURS.length) { montrer('message'); scene.classList.add('vide'); return; } // plus personne
       const [pose, texte] = RETOURS[retours - 1];
       message(texte, pose);
-      if (retours === RETOURS.length) { // il se lève et s'en va
+      if (retours === RETOURS.length) {
+        // il finit sa phrase, laisse le temps de la lire, puis quitte le tribunal (le texte reste affiché)
         sonMarteau();
         await attendreFinDuTexte($('message-texte'));
+        await new Promise(ok => setTimeout(ok, 2000));
         scene.classList.add('parti');
       }
       return;
@@ -292,7 +318,9 @@ async function demarrer() {
     return message("Impossible de charger les personnages.\nRecharge la page.", 'negatif');
   }
   parId = new Map(persos.map(p => [p.id, p]));
-  imagesPretes = prechargerPersos(persos).then(() => { imagesOk = true; }); // pendant l'accueil et les règles
+  await toutCharger([...IMAGES_DU_SITE.map(chargerImage), prechargerPersos(persos), chargementPortes, musiquePrete('titre')]);
+  // si le chargement a été coupé au bout de 25 s, la grille attendra encore les cartes manquantes
+  imagesPretes = prechargerPersos(persos).then(() => { imagesOk = true; });
 
   if (db) {
     const { data, error } = await db.from('settings').select('poll_open').eq('id', 1).maybeSingle();
@@ -317,7 +345,6 @@ async function demarrer() {
   montrer('intro');
   $('intro').focus();
   musique('titre');
-  precharger();
   // Portes fermées derrière le texte d'accueil dès qu'elles sont prêtes.
   chargementPortes.then(images => {
     if (!images || $('ecran-intro').hidden) return;
