@@ -105,6 +105,14 @@ svg.lucide { width: 1.05em; height: 1.05em; vertical-align: -.15em; }
 /* ---------- Dossier du tribunal : cartes ---------- */
 .dossier-titre { margin-top: .6rem; }
 .consigne { margin: 0 0 1.2rem; color: var(--gris); }
+/* Grand appel, seulement pendant la découverte des persos */
+.appel {
+  display: none; margin: .4rem 0 1rem; padding: .5em .8em; text-align: center;
+  font-size: clamp(1.5rem, 5vw, 2.8rem); font-weight: 700; line-height: 1.15;
+  color: #ffd23f; text-shadow: 3px 3px 0 #000;
+  border: 3px solid #ffd23f; background: rgba(0, 0, 0, .55);
+}
+.mode-decouverte .appel { display: block; }
 .grille { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.1rem .8rem; }
 @media (min-width: 360px) { .grille { grid-template-columns: repeat(3, 1fr); gap: 1rem .7rem; } }
 @media (min-width: 760px) { .grille { grid-template-columns: repeat(4, 1fr); gap: 1.4rem 1.1rem; } }
