@@ -1,73 +1,8 @@
 [
   {
-    "id": "khaled",
-    "nom": "Khaled",
-    "image": "assets/characters/khaled.webp"
-  },
-  {
-    "id": "miri",
-    "nom": "Miri",
-    "image": "assets/characters/miri.webp"
-  },
-  {
-    "id": "islem",
-    "nom": "Islem",
-    "image": "assets/characters/islem.webp"
-  },
-  {
-    "id": "thomas",
-    "nom": "Thomas",
-    "image": "assets/characters/thomas.webp"
-  },
-  {
-    "id": "mehdi",
-    "nom": "Mehdi",
-    "image": "assets/characters/mehdi.webp"
-  },
-  {
-    "id": "gabriel",
-    "nom": "Gabriel",
-    "image": "assets/characters/gabriel.webp"
-  },
-  {
-    "id": "rina",
-    "nom": "Rina",
-    "image": "assets/characters/rina.webp"
-  },
-  {
-    "id": "sorciere",
-    "nom": "La sorcière",
-    "image": "assets/characters/sorciere.webp"
-  },
-  {
-    "id": "guillaume",
-    "nom": "Guillaume",
-    "image": "assets/characters/guillaume.webp"
-  },
-  {
-    "id": "virginie",
-    "nom": "Virginie",
-    "image": "assets/characters/virginie.webp"
-  },
-  {
-    "id": "ariel",
-    "nom": "Ariel",
-    "image": "assets/characters/ariel.webp"
-  },
-  {
-    "id": "islem-kun",
-    "nom": "Islem kun",
-    "image": "assets/characters/islem-kun.webp"
-  },
-  {
-    "id": "thomas-chan",
-    "nom": "Thomas chan",
-    "image": "assets/characters/thomas-chan.webp"
-  },
-  {
-    "id": "khaled-kun",
-    "nom": "Khaled kun",
-    "image": "assets/characters/khaled-kun.webp"
+    "id": "mojito",
+    "nom": "Mojito",
+    "image": "assets/characters/mojito.webp"
   },
   {
     "id": "luca-kun",
@@ -75,39 +10,9 @@
     "image": "assets/characters/luca-kun.webp"
   },
   {
-    "id": "luca",
-    "nom": "Luca",
-    "image": "assets/characters/luca.webp"
-  },
-  {
-    "id": "alfred",
-    "nom": "Alfred",
-    "image": "assets/characters/alfred.webp"
-  },
-  {
-    "id": "rene-grau",
-    "nom": "René Grau",
-    "image": "assets/characters/rene-grau.webp"
-  },
-  {
-    "id": "romain2",
-    "nom": "Romain 2",
-    "image": "assets/characters/romain2.webp"
-  },
-  {
-    "id": "romain1",
-    "nom": "Romain 1",
-    "image": "assets/characters/romain1.webp"
-  },
-  {
-    "id": "vincent",
-    "nom": "Vincent",
-    "image": "assets/characters/vincent.webp"
-  },
-  {
-    "id": "triple-t",
-    "nom": "Triple T",
-    "image": "assets/characters/triple-t.webp"
+    "id": "khaled-kun",
+    "nom": "Khaled kun",
+    "image": "assets/characters/khaled-kun.webp"
   },
   {
     "id": "gideon",
@@ -115,29 +20,14 @@
     "image": "assets/characters/gideon.webp"
   },
   {
-    "id": "khaboom",
-    "nom": "Khaboom",
-    "image": "assets/characters/khaboom.webp"
+    "id": "roberto",
+    "nom": "Roberto",
+    "image": "assets/characters/roberto.webp"
   },
   {
-    "id": "mojito",
-    "nom": "Mojito",
-    "image": "assets/characters/mojito.webp"
-  },
-  {
-    "id": "pringles",
-    "nom": "Pringles",
-    "image": "assets/characters/pringles.webp"
-  },
-  {
-    "id": "juge",
-    "nom": "Le juge",
-    "image": "assets/characters/juge.webp"
-  },
-  {
-    "id": "tony",
-    "nom": "Tony (whos is bro??)",
-    "image": "assets/characters/tony.webp"
+    "id": "rene-grau",
+    "nom": "René Grau",
+    "image": "assets/characters/rene-grau.webp"
   },
   {
     "id": "smart-luca",
@@ -145,29 +35,24 @@
     "image": "assets/characters/smart-luca.webp"
   },
   {
-    "id": "detective-khaled",
-    "nom": "Détective Khaled",
-    "image": "assets/characters/detective-khaled.webp"
-  },
-  {
-    "id": "trilo",
-    "nom": "Le chibi trop mignon de la main de Thomas",
-    "image": "assets/characters/trilo.webp"
-  },
-  {
-    "id": "auxane-kun",
-    "nom": "Auxane kun",
-    "image": "assets/characters/auxane-kun.webp"
-  },
-  {
-    "id": "majordome",
-    "nom": "Le majordome",
-    "image": "assets/characters/majordome.webp"
-  },
-  {
     "id": "pere-noel",
     "nom": "Le père Noël",
     "image": "assets/characters/pere-noel.webp"
+  },
+  {
+    "id": "pringles",
+    "nom": "Pringles",
+    "image": "assets/characters/pringles.webp"
+  },
+  {
+    "id": "vincent",
+    "nom": "Vincent",
+    "image": "assets/characters/vincent.webp"
+  },
+  {
+    "id": "romain2",
+    "nom": "Romain 2",
+    "image": "assets/characters/romain2.webp"
   },
   {
     "id": "halloween",
@@ -175,8 +60,123 @@
     "image": "assets/characters/halloween.webp"
   },
   {
-    "id": "roberto",
-    "nom": "Roberto",
-    "image": "assets/characters/roberto.webp"
+    "id": "thomas",
+    "nom": "Thomas",
+    "image": "assets/characters/thomas.webp"
+  },
+  {
+    "id": "juge",
+    "nom": "Le juge",
+    "image": "assets/characters/juge.webp"
+  },
+  {
+    "id": "detective-khaled",
+    "nom": "Détective Khaled",
+    "image": "assets/characters/detective-khaled.webp"
+  },
+  {
+    "id": "islem",
+    "nom": "Islem",
+    "image": "assets/characters/islem.webp"
+  },
+  {
+    "id": "tony",
+    "nom": "Tony (whos is bro??)",
+    "image": "assets/characters/tony.webp"
+  },
+  {
+    "id": "khaboom",
+    "nom": "Khaboom",
+    "image": "assets/characters/khaboom.webp"
+  },
+  {
+    "id": "luca",
+    "nom": "Luca",
+    "image": "assets/characters/luca.webp"
+  },
+  {
+    "id": "sorciere",
+    "nom": "La sorcière",
+    "image": "assets/characters/sorciere.webp"
+  },
+  {
+    "id": "virginie",
+    "nom": "Virginie",
+    "image": "assets/characters/virginie.webp"
+  },
+  {
+    "id": "alfred",
+    "nom": "Alfred",
+    "image": "assets/characters/alfred.webp"
+  },
+  {
+    "id": "mehdi",
+    "nom": "Mehdi",
+    "image": "assets/characters/mehdi.webp"
+  },
+  {
+    "id": "miri",
+    "nom": "Miri",
+    "image": "assets/characters/miri.webp"
+  },
+  {
+    "id": "guillaume",
+    "nom": "Guillaume",
+    "image": "assets/characters/guillaume.webp"
+  },
+  {
+    "id": "islem-kun",
+    "nom": "Islem kun",
+    "image": "assets/characters/islem-kun.webp"
+  },
+  {
+    "id": "trilo",
+    "nom": "Le chibi trop mignon de la main de Thomas",
+    "image": "assets/characters/trilo.webp"
+  },
+  {
+    "id": "majordome",
+    "nom": "Le majordome",
+    "image": "assets/characters/majordome.webp"
+  },
+  {
+    "id": "gabriel",
+    "nom": "Gabriel",
+    "image": "assets/characters/gabriel.webp"
+  },
+  {
+    "id": "thomas-chan",
+    "nom": "Thomas chan",
+    "image": "assets/characters/thomas-chan.webp"
+  },
+  {
+    "id": "khaled",
+    "nom": "Khaled",
+    "image": "assets/characters/khaled.webp"
+  },
+  {
+    "id": "rina",
+    "nom": "Rina",
+    "image": "assets/characters/rina.webp"
+  },
+  {
+    "id": "ariel",
+    "nom": "Ariel",
+    "image": "assets/characters/ariel.webp"
+  },
+  {
+    "id": "triple-t",
+    "nom": "Triple T",
+    "image": "assets/characters/triple-t.webp"
+  },
+  {
+    "id": "auxane-kun",
+    "nom": "Auxane kun",
+    "image": "assets/characters/auxane-kun.webp"
+  },
+  {
+    "id": "romain1",
+    "nom": "Romain 1",
+    "image": "assets/characters/romain1.webp"
   }
 ]
