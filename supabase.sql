@@ -31,3 +31,11 @@ revoke update on votes from anon, authenticated;
 -- Tout le monde voit si le sondage est ouvert ; seul l'admin peut le changer
 create policy "lecture etat" on settings for select to anon, authenticated using (true);
 create policy "admin ouvre/ferme" on settings for update to authenticated using (true) with check (true);
+
+-- Le navigateur d'un votant demande si SON vote existe encore (supprimé dans l'admin = il peut revoter).
+-- Ne révèle rien d'autre : il faut connaître l'identifiant secret du vote.
+create or replace function vote_existe(vid uuid) returns boolean
+  language sql security definer set search_path = public
+  as $$ select exists (select 1 from votes where id = vid) $$;
+revoke execute on function vote_existe(uuid) from public;
+grant execute on function vote_existe(uuid) to anon, authenticated;

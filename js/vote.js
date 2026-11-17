@@ -99,10 +99,14 @@ function musique(nom) {
   a.loop = true;
   a.volume = 0;
   a.muted = sonCoupe;
-  a.play().catch(() => { a.bloquee = true; }); // navigateur : pas de son avant un premier clic
+  a.play().catch(() => { a.bloquee = true; }); // navigateur : pas de son avant un premier geste
   fondu(a, MUSIQUES[nom].volume, 1000);
   piste = a;
 }
+// Musique bloquée par le navigateur : elle démarre au tout premier geste, n'importe où sur la page.
+['pointerdown', 'keydown', 'touchstart'].forEach(t => document.addEventListener(t, () => {
+  if (piste && piste.bloquee) { piste.bloquee = false; piste.play().catch(() => {}); }
+}, true));
 function majBoutonSon() {
   $('btn-son').textContent = sonCoupe ? '♪ Son : non' : '♪ Son : oui';
   $('btn-son').setAttribute('aria-pressed', !sonCoupe);
@@ -221,7 +225,18 @@ const pluriel = n => n + (n > 1 ? ' personnages classés' : ' personnage classé
 
 // ---------- Démarrage ----------
 async function demarrer() {
-  if (lire(CLE_VOTE)) return message("Tu as déjà voté.\nMerci pour ta participation !", 'positif');
+  const dejaVote = lire(CLE_VOTE);
+  if (dejaVote) {
+    // Le vote a pu être supprimé dans l'admin : on demande à Supabase s'il existe encore.
+    // Ancienne mémoire (true, sans identifiant) ou vote supprimé : on peut revoter.
+    let existe = typeof dejaVote === 'string';
+    if (existe && db) {
+      const { data, error } = await db.rpc('vote_existe', { vid: dejaVote });
+      if (!error) existe = data === true; // erreur réseau : on garde « déjà voté »
+    }
+    if (existe) return message("Tu as déjà voté.\nMerci pour ta participation !", 'positif');
+    ecrire(CLE_VOTE, null);
+  }
   try {
     persos = await chargerPersos();
   } catch {
@@ -263,13 +278,6 @@ async function demarrer() {
 
 // Clic : les portes du procès s'ouvrent (animation à l'envers) sur la suite.
 $('intro').onclick = () => {
-  // Si le navigateur a bloqué la musique titre, ce premier clic la lance seulement ;
-  // le clic suivant ouvre les portes.
-  if (pisteNom === 'titre' && piste && piste.bloquee) {
-    piste.bloquee = false;
-    piste.play().catch(() => {});
-    return;
-  }
   if (brouillon.etape === 'vote') ouvrirVote(); else ouvrirRegles();
   document.body.classList.remove('avec-portes');
   if (!$('portes').hidden) portes('ouvre');
@@ -529,7 +537,7 @@ $('btn-valider').onclick = async () => {
       if (error && error.code !== '23505') throw error;
     }
     if (modeTest) console.info('[mode test] vote non envoyé :', brouillon.classement);
-    else ecrire(CLE_VOTE, true); // en test, on peut revoter après rechargement
+    else ecrire(CLE_VOTE, brouillon.id); // en test, on peut revoter après rechargement
     ecrire(CLE_BROUILLON, null);
     await hochement;
     musique(null); // la musique s'efface pendant la bulle
