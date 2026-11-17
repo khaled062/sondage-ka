@@ -105,17 +105,30 @@ function musique(nom) {
   pisteNom = nom;
   piste = null;
   if (!nom) return;
-  const a = new Audio(MUSIQUES[nom].url);
-  a.loop = true;
+  const a = chargerMusique(nom);
   a.volume = 0;
   a.muted = sonCoupe;
-  a.play().catch(() => { a.bloquee = true; }); // navigateur : pas de son avant un premier geste
+  a.play().catch(() => {}); // navigateur : pas de son avant un premier geste (relancé plus bas)
   fondu(a, MUSIQUES[nom].volume, 1000);
   piste = a;
 }
-// Musique bloquée par le navigateur : elle démarre au tout premier geste, n'importe où sur la page.
+// Les musiques sont téléchargées dès l'ouverture de la page, pour démarrer sans attente.
+const musiquesChargees = {};
+function chargerMusique(nom) {
+  if (!musiquesChargees[nom]) {
+    const a = new Audio(MUSIQUES[nom].url);
+    a.loop = true;
+    a.preload = 'auto';
+    musiquesChargees[nom] = a;
+  }
+  return musiquesChargees[nom];
+}
+chargerMusique('titre');
+chargerMusique('avantVote');
+// Musique pas encore lancée (bloquée par le navigateur ou encore en chargement) :
+// elle démarre au tout premier geste, n'importe où sur la page.
 ['pointerdown', 'keydown', 'touchstart'].forEach(t => document.addEventListener(t, () => {
-  if (piste && piste.bloquee) { piste.bloquee = false; piste.play().catch(() => {}); }
+  if (piste && piste.paused) piste.play().catch(() => {});
 }, true));
 function majBoutonSon() {
   $('btn-son').textContent = sonCoupe ? '♪ Son : non' : '♪ Son : oui';
@@ -247,6 +260,7 @@ async function demarrer() {
     if (existe) return message("Tu as déjà voté.\nMerci pour ta participation !", 'positif');
     ecrire(CLE_VOTE, null);
   }
+  musique('titre'); // tout de suite, sans attendre le chargement des persos
   try {
     persos = await chargerPersos();
   } catch {
