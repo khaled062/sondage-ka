@@ -246,14 +246,14 @@ const finirMachine = el => enCours(el) && el._finir && el._finir();
 const normaliser = t => t.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim();
 const pluriel = n => n + (n > 1 ? ' personnages classés' : ' personnage classé');
 
-// Ce que dit le juge quand on revient après avoir voté (1re, 2e… 5e fois, puis toutes les suivantes).
+// Ce que dit le juge quand on revient après avoir voté (1re à 5e fois).
+// À la 5e, il quitte le tribunal ; ensuite, la salle reste vide.
 const RETOURS = [
-  ['positif', "Tu as déjà voté. Merci pour ta participation !\nMaintenant, surtout, ne reviens pas."],
-  ['surpris', "Encore toi ?! Ton vote est déjà enregistré.\nJe t'avais dit de ne pas revenir !"],
-  ['non', "Non, non et non.\nTu ne voteras pas deux fois. Rentre chez toi."],
-  ['negatif', "Ça commence à bien faire !\nFerme cette page immédiatement !"],
-  ['negatif', "ESPÈCE D'ABRUTI FINI !\nDÉGAGE DE MON TRIBUNAL !"],
-  ['negatif', "……"]
+  ['yeux', "Chef, t'as déjà voté.\nNe t'avise plus de revenir."],
+  ['surpris', "T'es vraiment revenu, el hmar ???\nCasse-toi, au cas où t'avais pas compris."],
+  ['negatif', "CASSE-TOI CHEF,\nY'A RIEN ICI !"],
+  ['negatif', "REVIENS ENCORE UNE FOIS\nET ÇA VA TE BAFFER !"],
+  ['negatif', "ENCULÉ, TU SAIS QUOI ?\nJ'ME CASSE !"]
 ];
 
 // ---------- Démarrage ----------
@@ -271,9 +271,16 @@ async function demarrer() {
       // À chaque retour, le juge s'agace un peu plus ; à partir de la 6e fois, il te fixe en silence.
       const retours = (lire('sondage_retours') || 0) + 1;
       ecrire('sondage_retours', retours);
-      const [pose, texte] = RETOURS[Math.min(retours, RETOURS.length) - 1];
-      if (retours === 5) sonMarteau();
-      return message(texte, pose);
+      const scene = $('message-texte').closest('.scene');
+      if (retours > RETOURS.length) { montrer('message'); scene.classList.add('parti'); return; } // plus personne
+      const [pose, texte] = RETOURS[retours - 1];
+      message(texte, pose);
+      if (retours === RETOURS.length) { // il se lève et s'en va
+        sonMarteau();
+        await attendreFinDuTexte($('message-texte'));
+        scene.classList.add('parti');
+      }
+      return;
     }
     ecrire(CLE_VOTE, null);
     ecrire('sondage_retours', null);
