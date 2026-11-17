@@ -1,252 +1,182 @@
 [
   {
-    "id": "perso01",
-    "nom": "Personnage 1",
-    "image": "assets/characters/perso01.png"
+    "id": "khaled",
+    "nom": "Khaled",
+    "image": "assets/characters/khaled.webp"
   },
   {
-    "id": "perso02",
-    "nom": "Personnage 2",
-    "image": "assets/characters/perso02.png"
+    "id": "miri",
+    "nom": "Miri",
+    "image": "assets/characters/miri.webp"
   },
   {
-    "id": "perso03",
-    "nom": "Personnage 3",
-    "image": "assets/characters/perso03.png"
+    "id": "islem",
+    "nom": "Islem",
+    "image": "assets/characters/islem.webp"
   },
   {
-    "id": "perso04",
-    "nom": "Personnage 4",
-    "image": "assets/characters/perso04.png"
+    "id": "thomas",
+    "nom": "Thomas",
+    "image": "assets/characters/thomas.webp"
   },
   {
-    "id": "perso05",
-    "nom": "Personnage 5",
-    "image": "assets/characters/perso05.png"
+    "id": "mehdi",
+    "nom": "Mehdi",
+    "image": "assets/characters/mehdi.webp"
   },
   {
-    "id": "perso06",
-    "nom": "Personnage 6",
-    "image": "assets/characters/perso06.png"
+    "id": "gabriel",
+    "nom": "Gabriel",
+    "image": "assets/characters/gabriel.webp"
   },
   {
-    "id": "perso07",
-    "nom": "Personnage 7",
-    "image": "assets/characters/perso07.png"
+    "id": "rina",
+    "nom": "Rina",
+    "image": "assets/characters/rina.webp"
   },
   {
-    "id": "perso08",
-    "nom": "Personnage 8",
-    "image": "assets/characters/perso08.png"
+    "id": "sorciere",
+    "nom": "La sorcière",
+    "image": "assets/characters/sorciere.webp"
   },
   {
-    "id": "perso09",
-    "nom": "Personnage 9",
-    "image": "assets/characters/perso09.png"
+    "id": "guillaume",
+    "nom": "Guillaume",
+    "image": "assets/characters/guillaume.webp"
   },
   {
-    "id": "perso10",
-    "nom": "Personnage 10",
-    "image": "assets/characters/perso10.png"
+    "id": "virginie",
+    "nom": "Virginie",
+    "image": "assets/characters/virginie.webp"
   },
   {
-    "id": "perso11",
-    "nom": "Personnage 11",
-    "image": "assets/characters/perso11.png"
+    "id": "ariel",
+    "nom": "Ariel",
+    "image": "assets/characters/ariel.webp"
   },
   {
-    "id": "perso12",
-    "nom": "Personnage 12",
-    "image": "assets/characters/perso12.png"
+    "id": "islem-kun",
+    "nom": "Islem kun",
+    "image": "assets/characters/islem-kun.webp"
   },
   {
-    "id": "perso13",
-    "nom": "Personnage 13",
-    "image": "assets/characters/perso13.png"
+    "id": "thomas-chan",
+    "nom": "Thomas chan",
+    "image": "assets/characters/thomas-chan.webp"
   },
   {
-    "id": "perso14",
-    "nom": "Personnage 14",
-    "image": "assets/characters/perso14.png"
+    "id": "khaled-kun",
+    "nom": "Khaled kun",
+    "image": "assets/characters/khaled-kun.webp"
   },
   {
-    "id": "perso15",
-    "nom": "Personnage 15",
-    "image": "assets/characters/perso15.png"
+    "id": "luca-kun",
+    "nom": "Luca kun",
+    "image": "assets/characters/luca-kun.webp"
   },
   {
-    "id": "perso16",
-    "nom": "Personnage 16",
-    "image": "assets/characters/perso16.png"
+    "id": "luca",
+    "nom": "Luca",
+    "image": "assets/characters/luca.webp"
   },
   {
-    "id": "perso17",
-    "nom": "Personnage 17",
-    "image": "assets/characters/perso17.png"
+    "id": "alfred",
+    "nom": "Alfred",
+    "image": "assets/characters/alfred.webp"
   },
   {
-    "id": "perso18",
-    "nom": "Personnage 18",
-    "image": "assets/characters/perso18.png"
+    "id": "rene-grau",
+    "nom": "René Grau",
+    "image": "assets/characters/rene-grau.webp"
   },
   {
-    "id": "perso19",
-    "nom": "Personnage 19",
-    "image": "assets/characters/perso19.png"
+    "id": "romain2",
+    "nom": "Romain 2",
+    "image": "assets/characters/romain2.webp"
   },
   {
-    "id": "perso20",
-    "nom": "Personnage 20",
-    "image": "assets/characters/perso20.png"
+    "id": "romain1",
+    "nom": "Romain 1",
+    "image": "assets/characters/romain1.webp"
   },
   {
-    "id": "perso21",
-    "nom": "Personnage 21",
-    "image": "assets/characters/perso21.png"
+    "id": "vincent",
+    "nom": "Vincent",
+    "image": "assets/characters/vincent.webp"
   },
   {
-    "id": "perso22",
-    "nom": "Personnage 22",
-    "image": "assets/characters/perso22.png"
+    "id": "triple-t",
+    "nom": "Triple T",
+    "image": "assets/characters/triple-t.webp"
   },
   {
-    "id": "perso23",
-    "nom": "Personnage 23",
-    "image": "assets/characters/perso23.png"
+    "id": "gideon",
+    "nom": "Gideon",
+    "image": "assets/characters/gideon.webp"
   },
   {
-    "id": "perso24",
-    "nom": "Personnage 24",
-    "image": "assets/characters/perso24.png"
+    "id": "khaboom",
+    "nom": "Khaboom",
+    "image": "assets/characters/khaboom.webp"
   },
   {
-    "id": "perso25",
-    "nom": "Personnage 25",
-    "image": "assets/characters/perso25.png"
+    "id": "mojito",
+    "nom": "Mojito",
+    "image": "assets/characters/mojito.webp"
   },
   {
-    "id": "perso26",
-    "nom": "Personnage 26",
-    "image": "assets/characters/perso26.png"
+    "id": "pringles",
+    "nom": "Pringles",
+    "image": "assets/characters/pringles.webp"
   },
   {
-    "id": "perso27",
-    "nom": "Personnage 27",
-    "image": "assets/characters/perso27.png"
+    "id": "juge",
+    "nom": "Le juge",
+    "image": "assets/characters/juge.webp"
   },
   {
-    "id": "perso28",
-    "nom": "Personnage 28",
-    "image": "assets/characters/perso28.png"
+    "id": "tony",
+    "nom": "Tony (whos is bro??)",
+    "image": "assets/characters/tony.webp"
   },
   {
-    "id": "perso29",
-    "nom": "Personnage 29",
-    "image": "assets/characters/perso29.png"
+    "id": "smart-luca",
+    "nom": "Smart Luca",
+    "image": "assets/characters/smart-luca.webp"
   },
   {
-    "id": "perso30",
-    "nom": "Personnage 30",
-    "image": "assets/characters/perso30.png"
+    "id": "detective-khaled",
+    "nom": "Détective Khaled",
+    "image": "assets/characters/detective-khaled.webp"
   },
   {
-    "id": "perso31",
-    "nom": "Personnage 31",
-    "image": "assets/characters/perso31.png"
+    "id": "trilo",
+    "nom": "Le chibi trop mignon de la main de Thomas",
+    "image": "assets/characters/trilo.webp"
   },
   {
-    "id": "perso32",
-    "nom": "Personnage 32",
-    "image": "assets/characters/perso32.png"
+    "id": "auxane-kun",
+    "nom": "Auxane kun",
+    "image": "assets/characters/auxane-kun.webp"
   },
   {
-    "id": "perso33",
-    "nom": "Personnage 33",
-    "image": "assets/characters/perso33.png"
+    "id": "majordome",
+    "nom": "Le majordome",
+    "image": "assets/characters/majordome.webp"
   },
   {
-    "id": "perso34",
-    "nom": "Personnage 34",
-    "image": "assets/characters/perso34.png"
+    "id": "pere-noel",
+    "nom": "Le père Noël",
+    "image": "assets/characters/pere-noel.webp"
   },
   {
-    "id": "perso35",
-    "nom": "Personnage 35",
-    "image": "assets/characters/perso35.png"
+    "id": "halloween",
+    "nom": "La meuf random d'Halloween",
+    "image": "assets/characters/halloween.webp"
   },
   {
-    "id": "perso36",
-    "nom": "Personnage 36",
-    "image": "assets/characters/perso36.png"
-  },
-  {
-    "id": "perso37",
-    "nom": "Personnage 37",
-    "image": "assets/characters/perso37.png"
-  },
-  {
-    "id": "perso38",
-    "nom": "Personnage 38",
-    "image": "assets/characters/perso38.png"
-  },
-  {
-    "id": "perso39",
-    "nom": "Personnage 39",
-    "image": "assets/characters/perso39.png"
-  },
-  {
-    "id": "perso40",
-    "nom": "Personnage 40",
-    "image": "assets/characters/perso40.png"
-  },
-  {
-    "id": "perso41",
-    "nom": "Personnage 41",
-    "image": "assets/characters/perso41.png"
-  },
-  {
-    "id": "perso42",
-    "nom": "Personnage 42",
-    "image": "assets/characters/perso42.png"
-  },
-  {
-    "id": "perso43",
-    "nom": "Personnage 43",
-    "image": "assets/characters/perso43.png"
-  },
-  {
-    "id": "perso44",
-    "nom": "Personnage 44",
-    "image": "assets/characters/perso44.png"
-  },
-  {
-    "id": "perso45",
-    "nom": "Personnage 45",
-    "image": "assets/characters/perso45.png"
-  },
-  {
-    "id": "perso46",
-    "nom": "Personnage 46",
-    "image": "assets/characters/perso46.png"
-  },
-  {
-    "id": "perso47",
-    "nom": "Personnage 47",
-    "image": "assets/characters/perso47.png"
-  },
-  {
-    "id": "perso48",
-    "nom": "Personnage 48",
-    "image": "assets/characters/perso48.png"
-  },
-  {
-    "id": "perso49",
-    "nom": "Personnage 49",
-    "image": "assets/characters/perso49.png"
-  },
-  {
-    "id": "perso50",
-    "nom": "Personnage 50",
-    "image": "assets/characters/perso50.png"
+    "id": "roberto",
+    "nom": "Roberto",
+    "image": "assets/characters/roberto.webp"
   }
 ]
