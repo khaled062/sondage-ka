@@ -47,7 +47,7 @@ svg.lucide { width: 1.05em; height: 1.05em; vertical-align: -.15em; }
 .scene-perso { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .scene::after { /* boîte de dialogue d'objection.lol : bande noire semi-transparente */
   content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 25%; pointer-events: none;
-  background: rgba(16, 16, 18, .82); /* gris foncé presque opaque, comme sur objection.lol */
+  background: rgba(6, 6, 8, .94); /* noir presque opaque, comme sur objection.lol */
 }
 .scene-nom, .scene-texte { z-index: 1; }
 .scene.marteau::after, .scene.marteau .scene-nom, .scene.marteau .scene-texte { display: none; }
@@ -327,7 +327,9 @@ body:has(#ecran-accueil:not([hidden]), #ecran-message:not([hidden])) main { max-
   -webkit-background-clip: text; background-clip: text;
 }
 .logo-haut { font-size: clamp(.9rem, 5.2vw, 3.6rem); align-self: flex-start; margin-left: 4%; }
-.logo-bas { font-size: clamp(4.5rem, 22vw, 10rem); margin-top: -.12em; margin-left: 18%; }
+/* KA centré sur la jonction des portes : le K à gauche, le A à droite */
+.logo-bas { font-size: clamp(4.5rem, 22vw, 10rem); margin-top: .08em; align-self: center; }
+.logo-bas > span { letter-spacing: .18em; padding-left: .34em; }
 .intro .intro-texte { font-size: clamp(1.1rem, 3.5vw, 1.8rem); }
 
 

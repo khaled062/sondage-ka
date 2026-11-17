@@ -69,6 +69,16 @@ document.querySelectorAll('.scene').forEach(s => {
 });
 const sprite = el => el.closest('.scene').querySelector('.scene-perso');
 
+// Préchargement pendant l'écran titre : le juge, ses expressions et le marteau s'affichent ensuite sans attente.
+const PRECHARGES = [];
+function precharger() {
+  const gifs = new Set(Object.values(POSES).flatMap(p => p.slice(0, 3)));
+  [...[...gifs].map(n => JUGE + n + '.gif'), OL + 'Images/gavel.webp', OL + 'Images/Bubbles/3.png',
+    OL + 'Images/Backgrounds/Preset/%5BPW%5D%20Judge.jpg', OL + 'Images/UI/Chatbox/Trilogy/textbox.png',
+    OL + 'Images/evidence%20container.png']
+    .forEach(src => { const i = new Image(); i.src = src; PRECHARGES.push(i); });
+}
+
 // ---------- Musiques de fond (volume doux, fondu enchaîné d'une seconde) ----------
 // Volumes égalisés d'après la puissance mesurée de chaque fichier (titre -18 dB, autres -15 dB).
 const MUSIQUES = {
@@ -267,6 +277,7 @@ async function demarrer() {
   montrer('intro');
   $('intro').focus();
   musique('titre');
+  precharger();
   // Portes fermées derrière le texte d'accueil dès qu'elles sont prêtes.
   chargementPortes.then(images => {
     if (!images || $('ecran-intro').hidden) return;
