@@ -246,6 +246,16 @@ const finirMachine = el => enCours(el) && el._finir && el._finir();
 const normaliser = t => t.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim();
 const pluriel = n => n + (n > 1 ? ' personnages classés' : ' personnage classé');
 
+// Ce que dit le juge quand on revient après avoir voté (1re, 2e… 5e fois, puis toutes les suivantes).
+const RETOURS = [
+  ['positif', "Tu as déjà voté. Merci pour ta participation !\nMaintenant, surtout, ne reviens pas."],
+  ['surpris', "Encore toi ?! Ton vote est déjà enregistré.\nJe t'avais dit de ne pas revenir !"],
+  ['non', "Non, non et non.\nTu ne voteras pas deux fois. Rentre chez toi."],
+  ['negatif', "Ça commence à bien faire !\nFerme cette page immédiatement !"],
+  ['negatif', "ESPÈCE D'ABRUTI FINI !\nDÉGAGE DE MON TRIBUNAL !"],
+  ['negatif', "……"]
+];
+
 // ---------- Démarrage ----------
 async function demarrer() {
   const dejaVote = lire(CLE_VOTE);
@@ -257,8 +267,16 @@ async function demarrer() {
       const { data, error } = await db.rpc('vote_existe', { vid: dejaVote });
       if (!error) existe = data === true; // erreur réseau : on garde « déjà voté »
     }
-    if (existe) return message("Tu as déjà voté.\nMerci pour ta participation !", 'positif');
+    if (existe) {
+      // À chaque retour, le juge s'agace un peu plus ; à partir de la 6e fois, il te fixe en silence.
+      const retours = (lire('sondage_retours') || 0) + 1;
+      ecrire('sondage_retours', retours);
+      const [pose, texte] = RETOURS[Math.min(retours, RETOURS.length) - 1];
+      if (retours === 5) sonMarteau();
+      return message(texte, pose);
+    }
     ecrire(CLE_VOTE, null);
+    ecrire('sondage_retours', null);
   }
   musique('titre'); // tout de suite, sans attendre le chargement des persos
   try {
@@ -267,6 +285,7 @@ async function demarrer() {
     return message("Impossible de charger les personnages.\nRecharge la page.", 'negatif');
   }
   parId = new Map(persos.map(p => [p.id, p]));
+  imagesPretes = prechargerPersos(persos).then(() => { imagesOk = true; }); // pendant l'accueil et les règles
 
   if (db) {
     const { data, error } = await db.from('settings').select('poll_open').eq('id', 1).maybeSingle();
@@ -355,6 +374,7 @@ function zoomer(p) {
   imageOuRemplacement(img, p.image);
   $('zoom-vide').textContent = p.nom;
   $('zoom-nom').textContent = p.nom;
+  $('zoom').style.setProperty('--fond', p.fond || '');
   $('zoom').showModal();
 }
 $('zoom-fermer').onclick = () => $('zoom').close();
@@ -387,7 +407,18 @@ function allerA(carte) {
 
 // ---------- Étape 1 : découverte ----------
 let toutVu = false;
+// Tant que toutes les images ne sont pas prêtes, un écran d'attente : la grille apparaît ensuite d'un coup.
+let imagesPretes = Promise.resolve(), imagesOk = false;
+function attendreImages(suite) {
+  if (imagesOk) return false;
+  $('ecran-chargement').querySelector('p').textContent = 'Le dossier du tribunal arrive…';
+  montrer('chargement');
+  imagesPretes.then(suite);
+  return true;
+}
+
 function ouvrirDecouverte() {
+  if (attendreImages(ouvrirDecouverte)) return;
   modeVote = false;
   musique('avantVote');
   $('ecran-grille').className = 'ecran mode-decouverte';
@@ -417,6 +448,7 @@ $('btn-vu').onclick = ouvrirVote;
 
 // ---------- Étape 2 : vote ----------
 function ouvrirVote() {
+  if (attendreImages(ouvrirVote)) return;
   modeVote = true;
   toutVu = true;
   musique('vote');

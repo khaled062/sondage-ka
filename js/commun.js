@@ -27,12 +27,13 @@ function creerCarte(p) {
   carte.dataset.id = p.id;
   carte.innerHTML = `
     <button type="button" class="carte-cadre">
-      <img alt="" loading="lazy">
+      <img alt="">
       <span class="carte-vide"></span>
       <span class="rang" aria-hidden="true"></span>
     </button>
     <span class="carte-nom"></span>
     <button type="button" class="carte-loupe" aria-label="Agrandir"><i data-lucide="zoom-in"></i></button>`;
+  if (p.fond) carte.style.setProperty('--fond', p.fond);
   carte.querySelector('.carte-nom').textContent = p.nom;
   carte.querySelector('.carte-vide').textContent = p.nom;
   carte.querySelector('.carte-cadre').setAttribute('aria-label', p.nom);
@@ -44,10 +45,20 @@ function creerCarte(p) {
 function creerVignette(p) {
   const v = document.createElement('span');
   v.className = 'vignette';
+  if (p && p.fond) v.style.setProperty('--fond', p.fond);
   v.innerHTML = '<img alt=""><span class="carte-vide"></span>';
   v.querySelector('.carte-vide').textContent = p ? p.nom.slice(0, 2) : '?';
   imageOuRemplacement(v.querySelector('img'), p && p.image);
   return v;
+}
+
+// Télécharge et décode toutes les images des persos : la grille s'affiche ensuite d'un coup.
+function prechargerPersos(liste) {
+  return Promise.all(liste.filter(p => p.image).map(p => {
+    const i = new Image();
+    i.src = p.image;
+    return i.decode().catch(() => {}); // image manquante : la carte affiche son nom
+  }));
 }
 
 function echapper(t) {

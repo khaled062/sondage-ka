@@ -2,181 +2,217 @@
   {
     "id": "mojito",
     "nom": "Mojito",
-    "image": "assets/characters/mojito.webp"
+    "image": "assets/characters/mojito.webp",
+    "fond": "hsl(140,40%,82%)"
   },
   {
     "id": "luca-kun",
     "nom": "Luca kun",
-    "image": "assets/characters/luca-kun.webp"
+    "image": "assets/characters/luca-kun.webp",
+    "fond": "hsl(270,45%,82%)"
   },
   {
     "id": "khaled-kun",
     "nom": "Khaled kun",
-    "image": "assets/characters/khaled-kun.webp"
+    "image": "assets/characters/khaled-kun.webp",
+    "fond": "hsl(340,60%,85%)"
   },
   {
     "id": "gideon",
     "nom": "Gideon",
-    "image": "assets/characters/gideon.webp"
+    "image": "assets/characters/gideon.webp",
+    "fond": "hsl(190,35%,84%)"
   },
   {
     "id": "roberto",
     "nom": "Roberto",
-    "image": "assets/characters/roberto.webp"
+    "image": "assets/characters/roberto.webp",
+    "fond": "hsl(220,60%,85%)"
   },
   {
     "id": "rene-grau",
     "nom": "René Grau",
-    "image": "assets/characters/rene-grau.webp"
+    "image": "assets/characters/rene-grau.webp",
+    "fond": "hsl(235,40%,82%)"
   },
   {
     "id": "smart-luca",
     "nom": "Smart Luca",
-    "image": "assets/characters/smart-luca.webp"
+    "image": "assets/characters/smart-luca.webp",
+    "fond": "hsl(5,35%,82%)"
   },
   {
     "id": "pere-noel",
     "nom": "Le père Noël",
-    "image": "assets/characters/pere-noel.webp"
+    "image": "assets/characters/pere-noel.webp",
+    "fond": "hsl(0,60%,85%)"
   },
   {
     "id": "pringles",
     "nom": "Pringles",
-    "image": "assets/characters/pringles.webp"
+    "image": "assets/characters/pringles.webp",
+    "fond": "hsl(40,60%,82%)"
   },
   {
     "id": "vincent",
     "nom": "Vincent",
-    "image": "assets/characters/vincent.webp"
+    "image": "assets/characters/vincent.webp",
+    "fond": "hsl(30,75%,80%)"
   },
   {
     "id": "romain2",
     "nom": "Romain 2",
-    "image": "assets/characters/romain2.webp"
+    "image": "assets/characters/romain2.webp",
+    "fond": "hsl(25,70%,80%)"
   },
   {
     "id": "halloween",
     "nom": "La meuf random d'Halloween",
-    "image": "assets/characters/halloween.webp"
+    "image": "assets/characters/halloween.webp",
+    "fond": "hsl(25,80%,80%)"
   },
   {
     "id": "thomas",
     "nom": "Thomas",
-    "image": "assets/characters/thomas.webp"
+    "image": "assets/characters/thomas.webp",
+    "fond": "hsl(5,60%,84%)"
   },
   {
     "id": "juge",
     "nom": "Le juge",
-    "image": "assets/characters/juge.webp"
+    "image": "assets/characters/juge.webp",
+    "fond": "hsl(45,50%,80%)"
   },
   {
     "id": "detective-khaled",
     "nom": "Détective Khaled",
-    "image": "assets/characters/detective-khaled.webp"
+    "image": "assets/characters/detective-khaled.webp",
+    "fond": "hsl(285,40%,80%)"
   },
   {
     "id": "islem",
     "nom": "Islem",
-    "image": "assets/characters/islem.webp"
+    "image": "assets/characters/islem.webp",
+    "fond": "hsl(215,55%,82%)"
   },
   {
     "id": "tony",
     "nom": "Tony (whos is bro??)",
-    "image": "assets/characters/tony.webp"
+    "image": "assets/characters/tony.webp",
+    "fond": "hsl(0,55%,84%)"
   },
   {
     "id": "khaboom",
     "nom": "Khaboom",
-    "image": "assets/characters/khaboom.webp"
+    "image": "assets/characters/khaboom.webp",
+    "fond": "hsl(0,60%,84%)"
   },
   {
     "id": "luca",
     "nom": "Luca",
-    "image": "assets/characters/luca.webp"
+    "image": "assets/characters/luca.webp",
+    "fond": "hsl(350,45%,80%)"
   },
   {
     "id": "sorciere",
     "nom": "La sorcière",
-    "image": "assets/characters/sorciere.webp"
+    "image": "assets/characters/sorciere.webp",
+    "fond": "hsl(270,25%,78%)"
   },
   {
     "id": "virginie",
     "nom": "Virginie",
-    "image": "assets/characters/virginie.webp"
+    "image": "assets/characters/virginie.webp",
+    "fond": "hsl(300,60%,88%)"
   },
   {
     "id": "alfred",
     "nom": "Alfred",
-    "image": "assets/characters/alfred.webp"
+    "image": "assets/characters/alfred.webp",
+    "fond": "hsl(220,40%,80%)"
   },
   {
     "id": "mehdi",
     "nom": "Mehdi",
-    "image": "assets/characters/mehdi.webp"
+    "image": "assets/characters/mehdi.webp",
+    "fond": "hsl(30,70%,82%)"
   },
   {
     "id": "miri",
     "nom": "Miri",
-    "image": "assets/characters/miri.webp"
+    "image": "assets/characters/miri.webp",
+    "fond": "hsl(195,50%,82%)"
   },
   {
     "id": "guillaume",
     "nom": "Guillaume",
-    "image": "assets/characters/guillaume.webp"
+    "image": "assets/characters/guillaume.webp",
+    "fond": "hsl(110,30%,80%)"
   },
   {
     "id": "islem-kun",
     "nom": "Islem kun",
-    "image": "assets/characters/islem-kun.webp"
+    "image": "assets/characters/islem-kun.webp",
+    "fond": "hsl(200,40%,84%)"
   },
   {
     "id": "trilo",
     "nom": "Le chibi trop mignon de la main de Thomas",
-    "image": "assets/characters/trilo.webp"
+    "image": "assets/characters/trilo.webp",
+    "fond": "hsl(210,60%,84%)"
   },
   {
     "id": "majordome",
     "nom": "Le majordome",
-    "image": "assets/characters/majordome.webp"
+    "image": "assets/characters/majordome.webp",
+    "fond": "hsl(210,15%,80%)"
   },
   {
     "id": "gabriel",
     "nom": "Gabriel",
-    "image": "assets/characters/gabriel.webp"
+    "image": "assets/characters/gabriel.webp",
+    "fond": "hsl(220,35%,80%)"
   },
   {
     "id": "thomas-chan",
     "nom": "Thomas chan",
-    "image": "assets/characters/thomas-chan.webp"
+    "image": "assets/characters/thomas-chan.webp",
+    "fond": "hsl(345,55%,86%)"
   },
   {
     "id": "khaled",
     "nom": "Khaled",
-    "image": "assets/characters/khaled.webp"
+    "image": "assets/characters/khaled.webp",
+    "fond": "hsl(285,45%,82%)"
   },
   {
     "id": "rina",
     "nom": "Rina",
-    "image": "assets/characters/rina.webp"
+    "image": "assets/characters/rina.webp",
+    "fond": "hsl(320,50%,85%)"
   },
   {
     "id": "ariel",
     "nom": "Ariel",
-    "image": "assets/characters/ariel.webp"
+    "image": "assets/characters/ariel.webp",
+    "fond": "hsl(265,40%,80%)"
   },
   {
     "id": "triple-t",
     "nom": "Triple T",
-    "image": "assets/characters/triple-t.webp"
+    "image": "assets/characters/triple-t.webp",
+    "fond": "hsl(35,45%,80%)"
   },
   {
     "id": "auxane-kun",
     "nom": "Auxane kun",
-    "image": "assets/characters/auxane-kun.webp"
+    "image": "assets/characters/auxane-kun.webp",
+    "fond": "hsl(80,25%,78%)"
   },
   {
     "id": "romain1",
     "nom": "Romain 1",
-    "image": "assets/characters/romain1.webp"
+    "image": "assets/characters/romain1.webp",
+    "fond": "hsl(300,45%,84%)"
   }
 ]
