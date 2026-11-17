@@ -48,6 +48,12 @@
     "fond": "hsl(0,60%,85%)"
   },
   {
+    "id": "auxane",
+    "nom": "Auxane",
+    "image": "assets/characters/auxane.webp",
+    "fond": "hsl(90,30%,80%)"
+  },
+  {
     "id": "pringles",
     "nom": "Pringles",
     "image": "assets/characters/pringles.webp",
