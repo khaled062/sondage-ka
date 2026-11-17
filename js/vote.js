@@ -294,10 +294,10 @@ async function demarrer() {
       const [pose, texte] = RETOURS[retours - 1];
       message(texte, pose);
       if (retours === RETOURS.length) {
-        // il finit sa phrase, laisse le temps de la lire, puis quitte le tribunal (le texte reste affiché)
+        // il disparaît dès que le « ? » s'affiche, et le texte continue (« J'ME CASSE ! ») sans lui
         sonMarteau();
-        await attendreFinDuTexte($('message-texte'));
-        await new Promise(ok => setTimeout(ok, 2000));
+        const el = $('message-texte');
+        await new Promise(ok => { const t = setInterval(() => { if (el.textContent.includes('?') || !enCours(el)) { clearInterval(t); ok(); } }, 30); });
         scene.classList.add('parti');
       }
       return;
