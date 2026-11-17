@@ -54,11 +54,15 @@ function creerVignette(p) {
 
 // Télécharge et décode toutes les images des persos : la grille s'affiche ensuite d'un coup.
 function prechargerPersos(liste) {
-  return Promise.all(liste.filter(p => p.image).map(p => {
-    const i = new Image();
-    i.src = p.image;
-    return i.decode().catch(() => {}); // image manquante : la carte affiche son nom
-  }));
+  return Promise.all(liste.filter(p => p.image).map(p => imagePrete(p.image)));
+}
+// Une image téléchargée (ou en échec : elle ne bloque rien). Gardée en mémoire pour s'afficher sans attente.
+// (pas de img.decode() : il reste parfois bloqué selon le navigateur)
+const imagesGardees = [];
+function imagePrete(src) {
+  const i = new Image();
+  imagesGardees.push(i);
+  return new Promise(ok => { i.onload = i.onerror = ok; i.src = src; if (i.complete) ok(); });
 }
 
 function echapper(t) {

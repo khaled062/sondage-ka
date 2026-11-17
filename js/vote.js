@@ -76,13 +76,7 @@ const IMAGES_DU_SITE = [
   OL + 'Images/gavel.webp', OL + 'Images/Bubbles/3.png', OL + 'Images/Backgrounds/Preset/%5BPW%5D%20Judge.jpg',
   OL + 'Images/Backgrounds/Preset/PW%20Courtroom.jpg', OL + 'Images/UI/Chatbox/Trilogy/textbox.png',
   OL + 'Images/evidence%20container.png']);
-const GARDEES = []; // garde les images en mémoire pour qu'elles s'affichent sans attente
-function chargerImage(src) {
-  const i = new Image();
-  i.src = src;
-  GARDEES.push(i);
-  return i.decode().catch(() => {}); // une image en échec ne bloque pas le site
-}
+const chargerImage = imagePrete; // (commun.js)
 function musiquePrete(nom) {
   const a = chargerMusique(nom);
   if (a.readyState >= 4) return Promise.resolve();
