@@ -91,17 +91,41 @@ document.addEventListener('keydown', e => { if (e.key === 'Enter' && document.ac
 const attendreClic = () => new Promise(ok => { suite = ok; });
 
 // ---------- Déroulé ----------
-const ACCUEIL = [
-  ['content', "Salut ! Moi, c'est René."],
-  ['stand', "Tu as une question pour la FAQ de KA ? Pose-la-moi, je la transmettrai."],
-  ['timide', "Ton nom n'est pas demandé. Écris juste ta question en dessous."]
+// Plusieurs accueils : René en tire un au hasard (jamais deux fois de suite le même).
+const ACCUEILS = [
+  [['content', "Salut ! Moi, c'est René."],
+   ['stand', "Tu as une question pour la FAQ de KA ? Pose-la-moi, je la transmettrai au boss."],
+   ['timide', "Ton nom n'est pas demandé. Écris juste ta question en dessous."]],
+  [['surpris', "Oh ! Quelqu'un !"],
+   ['content', "Ouf, c'est pas Auxane, le gros au chapeau moche. Tant mieux !"],
+   ['stand', "Bon, t'as une question pour la FAQ ? Écris-la en dessous, je la transmettrai au boss."]],
+  [['colere', "Qui vient me déranger ?!"],
+   ['timide', "Ah… Une question pour la FAQ ? Pardon, pardon."],
+   ['stand', "Vas-y, écris-la en dessous. Je la transmettrai au boss sans dire de qui elle vient."]],
+  [['stand', "Bienvenue à la boîte à questions de KA !"],
+   ['content', "Pas besoin de donner ton nom : tu écris, j'apporte ta question au boss."]]
 ];
+const MERCIS = [
+  ['content', "Bien reçu ! Je file la donner au boss."],
+  ['content', "Noté ! Le boss va adorer celle-là."],
+  ['timide', "Merci… Elle part direct chez le boss."]
+];
+const ENCORE = [
+  ['stand', "Une autre ? Vas-y, je t'écoute."],
+  ['surpris', "Encore une ?! T'es curieux, toi."],
+  ['content', "Allez, envoie, le boss a le temps."]
+];
+const auHasard = t => t[Math.floor(Math.random() * t.length)];
 
 async function accueil() {
   $('aide').hidden = false;
-  for (const [pose, phrase] of ACCUEIL) {
+  let n = Math.floor(Math.random() * ACCUEILS.length);
+  if (n === lire('faq_dernier_accueil')) n = (n + 1) % ACCUEILS.length;
+  ecrire('faq_dernier_accueil', n);
+  const repliques = ACCUEILS[n];
+  for (const [i, [pose, phrase]] of repliques.entries()) {
     await dire(phrase, pose);
-    if (phrase !== ACCUEIL[ACCUEIL.length - 1][1]) await attendreClic();
+    if (i < repliques.length - 1) await attendreClic();
   }
   $('aide').hidden = true;
   ouvrirFormulaire();
@@ -132,7 +156,8 @@ $('form').onsubmit = async e => {
     if (error) throw error;
     $('form').hidden = true;
     await takeThat();
-    await dire("Bien reçu ! Merci pour ta question.", 'content');
+    const [pose, merci] = auHasard(MERCIS);
+    await dire(merci, pose);
     $('btn-encore').hidden = false;
   } catch (err) {
     $('erreur').textContent = "L'envoi n'a pas marché (" + (err.message || 'connexion') + "). Ta question est toujours là : réessaie.";
@@ -146,7 +171,8 @@ $('form').onsubmit = async e => {
 };
 $('btn-encore').onclick = async () => {
   $('btn-encore').hidden = true;
-  await dire("Une autre ? Vas-y, je t'écoute.", 'stand');
+  const [pose, phrase] = auHasard(ENCORE);
+  await dire(phrase, pose);
   ouvrirFormulaire();
 };
 
