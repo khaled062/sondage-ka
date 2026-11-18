@@ -110,6 +110,15 @@ const ACCUEILS = [
   [['colere', "Si t'es Auxane, demi-tour immédiatement. Je l'ai à l'œil, celui-là."],
    ['stand', "… Bon, t'as pas l'air d'être lui. Écris ta question, je la transmettrai au boss."]]
 ];
+// René te dévisage (7 fois sur 10, juste après sa 1re réplique).
+const INSPECTIONS = [
+  ['stand', "Heureusement que ta tête me revient, sinon je t'aurais pas laissé passer."],
+  ['stand', "Mouais… T'as pas l'air d'une racaille, toi. C'est rare, de nos jours."],
+  ['colere', "Tiens-toi droit et range ce téléphone. … Bon, ça ira pour cette fois."],
+  ['stand', "T'as une bonne bouille. Pas comme certains au chapeau moche…"],
+  ['colere', "Pas de capuche, pas de casquette à l'envers ? Bien. Tu peux rester."],
+  ['stand', "Une tenue correcte, un regard honnête… On n'en voit plus beaucoup, des comme toi."]
+];
 const MERCIS = [
   ['stand', "Reçu. Je la transmettrai au boss… quand j'aurai fini ma pause."],
   ['colere', "C'est noté. Le boss en fera ce qu'il veut, moi je m'en lave les mains."],
@@ -137,7 +146,8 @@ async function accueil() {
   let n = Math.floor(Math.random() * ACCUEILS.length);
   if (n === lire('faq_dernier_accueil')) n = (n + 1) % ACCUEILS.length;
   ecrire('faq_dernier_accueil', n);
-  const repliques = ACCUEILS[n];
+  const repliques = [...ACCUEILS[n]];
+  if (Math.random() < 0.7) repliques.splice(1, 0, auHasard(INSPECTIONS));
   for (const [i, [pose, phrase]] of repliques.entries()) {
     await dire(phrase, pose);
     if (i < repliques.length - 1) await attendreClic();
