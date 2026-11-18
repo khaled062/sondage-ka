@@ -141,6 +141,15 @@ async function accueil() {
     if (i < repliques.length - 1) await attendreClic();
   }
   $('aide').hidden = true;
+  // 1 fois sur 10, contrôle d'identité : Auxane est refoulé (il faut recharger la page pour réessayer)
+  if (Math.random() < 0.1) {
+    await dire("Attends… T'es pas Auxane, toi ?", 'colere');
+    if (await choisir("Oui, c'est moi", 'Non')) {
+      await dire("J'EN ÉTAIS SÛR ! DÉGAGE D'ICI, ET QUE JE TE REVOIE PLUS !", 'colere');
+      return; // fin : pas de question possible
+    }
+    await dire("Hm. T'as de la chance. Écris ta question, et vite.", 'stand');
+  }
   ouvrirFormulaire();
 }
 
@@ -174,8 +183,12 @@ $('form').onsubmit = async e => {
     await attendreClic();
     $('aide').hidden = true;
     await direAuHasard(SUITE);
-    $('choix').hidden = false; // « Encore une question » / « C'est tout pour le moment »
-    $('btn-autre').focus();
+    if (await choisir('Encore une question', "C'est tout pour le moment")) {
+      await direAuHasard(ENCORE);
+      ouvrirFormulaire();
+    } else {
+      await direAuHasard(FIN);
+    }
   } catch (err) {
     $('erreur').textContent = "L'envoi n'a pas marché (" + (err.message || 'connexion') + "). Ta question est toujours là : réessaie.";
     $('erreur').hidden = false;
@@ -187,15 +200,17 @@ $('form').onsubmit = async e => {
   }
 };
 $('choix').addEventListener('click', e => e.stopPropagation()); // un clic sur un choix n'avance pas le dialogue
-$('btn-autre').onclick = async () => {
-  $('choix').hidden = true;
-  await direAuHasard(ENCORE);
-  ouvrirFormulaire();
-};
-$('btn-fin').onclick = async () => {
-  $('choix').hidden = true;
-  await direAuHasard(FIN);
-};
+// Affiche deux choix sur la scène et renvoie true pour le premier, false pour le second.
+function choisir(premier, second) {
+  $('btn-autre').textContent = premier;
+  $('btn-fin').textContent = second;
+  $('choix').hidden = false;
+  $('btn-autre').focus();
+  return new Promise(ok => {
+    $('btn-autre').onclick = () => { $('choix').hidden = true; ok(true); };
+    $('btn-fin').onclick = () => { $('choix').hidden = true; ok(false); };
+  });
+}
 
 function takeThat() {
   $('take-that').hidden = false;
