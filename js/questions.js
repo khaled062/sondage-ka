@@ -94,7 +94,8 @@ const attendreClic = () => new Promise(ok => { suite = ok; });
 // René : vigile du tribunal, vieux, aigri, rabat-joie, persuadé que « c'était mieux avant ».
 // Il ne supporte pas Auxane. Chaque réplique est tirée au hasard (jamais deux fois de suite le même accueil).
 const ACCUEILS = [
-  [['colere', "Halte ! Sécurité. Qu'est-ce que tu fabriques ici ?"],
+  [['colere', "Halte ! Sécurité. C'est René. René Grau."],
+   ['colere', "Qu'est-ce que tu fabriques ici ?"],
    ['stand', "Une question pour la FAQ ? Pff… De mon temps, on posait ses questions en face."],
    ['stand', "Bon. Écris-la en dessous, je la transmettrai au boss. Et que ça saute."]],
   [['surpris', "Oh ! Quelqu'un !"],
@@ -103,7 +104,8 @@ const ACCUEILS = [
   [['colere', "Qui vient me déranger pendant ma ronde ?!"],
    ['stand', "Une question… Évidemment. Les jeunes, ça pose des questions au lieu de travailler."],
    ['stand', "Écris-la en dessous. Je la transmettrai au boss, sans dire de qui elle vient."]],
-  [['stand', "Boîte à questions de KA. Pas de bruit, pas de bêtises, pas de chewing-gum."],
+  [['stand', "C'est René. René Grau, vigile de ce tribunal depuis trente ans."],
+   ['stand', "Boîte à questions de KA. Pas de bruit, pas de bêtises, pas de chewing-gum."],
    ['colere', "Pas besoin de ton nom. Tu écris, je transmets au boss, et tu circules."]],
   [['colere', "Si t'es Auxane, demi-tour immédiatement. Je l'ai à l'œil, celui-là."],
    ['stand', "… Bon, t'as pas l'air d'être lui. Écris ta question, je la transmettrai au boss."]]
