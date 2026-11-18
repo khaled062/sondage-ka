@@ -30,7 +30,7 @@ begin
 end $$;
 create trigger questions_empreinte before insert on questions for each row execute function questions_empreinte();
 
-create policy "envoyer une question" on questions for insert to anon with check (true);
+create policy "envoyer une question" on questions for insert to anon, authenticated with check (true); -- authenticated : l'admin connecté peut aussi envoyer
 create policy "admin lit les questions" on questions for select to authenticated using (true);
 create policy "admin supprime les questions" on questions for delete to authenticated using (true);
 revoke update on questions from anon, authenticated;

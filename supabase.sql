@@ -18,7 +18,7 @@ alter table votes enable row level security;
 alter table settings enable row level security;
 
 -- Visiteurs : peuvent seulement ajouter un vote, et seulement si le sondage est ouvert
-create policy "vote si ouvert" on votes for insert to anon
+create policy "vote si ouvert" on votes for insert to anon, authenticated -- l'admin connecté peut aussi voter
   with check ((select poll_open from settings where id = 1));
 
 -- Admin connecté : lire et supprimer les votes
