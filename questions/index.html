@@ -23,6 +23,11 @@
         <img class="scene-bureau" src="../assets/objection/Images/Backgrounds/Preset_Desk/%5BPW%5D%20Witness.png" alt="">
         <div class="scene-nom">René</div>
         <p class="scene-texte" id="texte" aria-live="polite"></p>
+        <!-- choix sur la scène, comme les choix de dialogue du jeu -->
+        <div class="choix" id="choix" role="group" aria-label="Ta réponse" hidden>
+          <button type="button" class="choix-btn" id="btn-autre">Encore une question</button>
+          <button type="button" class="choix-btn" id="btn-fin">C'est tout pour le moment</button>
+        </div>
       </div>
       <p class="scene-aide" id="aide">Clique sur la scène ou appuie sur Entrée pour continuer</p>
 
@@ -35,8 +40,6 @@
         </div>
         <p class="erreur" id="erreur" role="alert" hidden></p>
       </form>
-
-      <button type="button" class="btn" id="btn-encore" hidden>Poser une autre question</button>
     </section>
   </main>
 

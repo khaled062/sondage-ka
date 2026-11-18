@@ -373,7 +373,6 @@ body:has(#ecran-accueil:not([hidden]), #ecran-message:not([hidden])) main { max-
 .question-boite textarea:focus { outline: 2px solid var(--choix); outline-offset: 1px; }
 .question-pied { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: .7rem; }
 .compteur-car { color: var(--gris); font-size: .9rem; }
-#btn-encore { margin-top: 1rem; }
 .question-admin { padding: .5rem 0; border-top: 1px solid rgba(255, 255, 255, .1); }
 .question-admin p { margin: .2rem 0 .4rem; white-space: pre-wrap; overflow-wrap: anywhere; }
 .question-date { color: var(--gris); font-size: .85rem; }

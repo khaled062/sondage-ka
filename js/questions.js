@@ -91,31 +91,44 @@ document.addEventListener('keydown', e => { if (e.key === 'Enter' && document.ac
 const attendreClic = () => new Promise(ok => { suite = ok; });
 
 // ---------- Déroulé ----------
-// Plusieurs accueils : René en tire un au hasard (jamais deux fois de suite le même).
+// René : vigile du tribunal, vieux, aigri, rabat-joie, persuadé que « c'était mieux avant ».
+// Il ne supporte pas Auxane. Chaque réplique est tirée au hasard (jamais deux fois de suite le même accueil).
 const ACCUEILS = [
-  [['content', "Salut ! Moi, c'est René."],
-   ['stand', "Tu as une question pour la FAQ de KA ? Pose-la-moi, je la transmettrai au boss."],
-   ['timide', "Ton nom n'est pas demandé. Écris juste ta question en dessous."]],
+  [['colere', "Halte ! Sécurité. Qu'est-ce que tu fabriques ici ?"],
+   ['stand', "Une question pour la FAQ ? Pff… De mon temps, on posait ses questions en face."],
+   ['stand', "Bon. Écris-la en dessous, je la transmettrai au boss. Et que ça saute."]],
   [['surpris', "Oh ! Quelqu'un !"],
-   ['content', "Ouf, c'est pas Auxane, le gros au chapeau moche. Tant mieux !"],
-   ['stand', "Bon, t'as une question pour la FAQ ? Écris-la en dessous, je la transmettrai au boss."]],
-  [['colere', "Qui vient me déranger ?!"],
-   ['timide', "Ah… Une question pour la FAQ ? Pardon, pardon."],
-   ['stand', "Vas-y, écris-la en dessous. Je la transmettrai au boss sans dire de qui elle vient."]],
-  [['stand', "Bienvenue à la boîte à questions de KA !"],
-   ['content', "Pas besoin de donner ton nom : tu écris, j'apporte ta question au boss."]]
+   ['content', "Ouf, c'est pas Auxane, le gros au chapeau moche. Celui-là, je peux pas le voir."],
+   ['stand', "Bon, t'as une question pour la FAQ ? Écris-la, je la transmettrai au boss."]],
+  [['colere', "Qui vient me déranger pendant ma ronde ?!"],
+   ['stand', "Une question… Évidemment. Les jeunes, ça pose des questions au lieu de travailler."],
+   ['stand', "Écris-la en dessous. Je la transmettrai au boss, sans dire de qui elle vient."]],
+  [['stand', "Boîte à questions de KA. Pas de bruit, pas de bêtises, pas de chewing-gum."],
+   ['colere', "Pas besoin de ton nom. Tu écris, je transmets au boss, et tu circules."]],
+  [['colere', "Si t'es Auxane, demi-tour immédiatement. Je l'ai à l'œil, celui-là."],
+   ['stand', "… Bon, t'as pas l'air d'être lui. Écris ta question, je la transmettrai au boss."]]
 ];
 const MERCIS = [
-  ['content', "Bien reçu ! Je file la donner au boss."],
-  ['content', "Noté ! Le boss va adorer celle-là."],
-  ['timide', "Merci… Elle part direct chez le boss."]
+  ['stand', "Reçu. Je la transmettrai au boss… quand j'aurai fini ma pause."],
+  ['colere', "C'est noté. Le boss en fera ce qu'il veut, moi je m'en lave les mains."],
+  ['stand', "Bien reçu. Encore une question de jeune, tiens."]
+];
+const SUITE = [
+  ['stand', "Autre chose, ou on peut enfin en rester là ?"],
+  ['colere', "C'est tout ? Dis-moi que c'est tout."]
 ];
 const ENCORE = [
-  ['stand', "Une autre ? Vas-y, je t'écoute."],
-  ['surpris', "Encore une ?! T'es curieux, toi."],
-  ['content', "Allez, envoie, le boss a le temps."]
+  ['colere', "Encore ?! Bon… vas-y, mais c'est la dernière."],
+  ['stand', "Pff. Allez, écris. J'ai que ça à faire, apparemment."],
+  ['surpris', "Encore une ?! De mon temps, on se contentait d'une seule."]
+];
+const FIN = [
+  ['content', "Enfin ! Allez, du balai, et referme bien la porte en sortant."],
+  ['stand', "Parfait. Circulez, y'a rien à voir."],
+  ['content', "Bon débarras. Et si tu croises Auxane, dis-lui que je l'ai à l'œil."]
 ];
 const auHasard = t => t[Math.floor(Math.random() * t.length)];
+const direAuHasard = t => { const [pose, phrase] = auHasard(t); return dire(phrase, pose); };
 
 async function accueil() {
   $('aide').hidden = false;
@@ -132,7 +145,7 @@ async function accueil() {
 }
 
 function ouvrirFormulaire() {
-  $('btn-encore').hidden = true;
+  $('choix').hidden = true;
   $('form').hidden = false;
   $('question').value = '';
   majCompteur();
@@ -156,24 +169,32 @@ $('form').onsubmit = async e => {
     if (error) throw error;
     $('form').hidden = true;
     await takeThat();
-    const [pose, merci] = auHasard(MERCIS);
-    await dire(merci, pose);
-    $('btn-encore').hidden = false;
+    await direAuHasard(MERCIS);
+    $('aide').hidden = false;
+    await attendreClic();
+    $('aide').hidden = true;
+    await direAuHasard(SUITE);
+    $('choix').hidden = false; // « Encore une question » / « C'est tout pour le moment »
+    $('btn-autre').focus();
   } catch (err) {
     $('erreur').textContent = "L'envoi n'a pas marché (" + (err.message || 'connexion') + "). Ta question est toujours là : réessaie.";
     $('erreur').hidden = false;
-    dire("Hein ? Ta question ne m'est pas parvenue… Réessaie !", 'surpris');
+    dire("Hein ? Ta question ne m'est jamais arrivée. Ces machines modernes, j'vous jure… Réessaie.", 'surpris');
   } finally {
     envoiEnCours = false;
     $('btn-envoyer').disabled = false;
     $('btn-envoyer').textContent = 'Envoyer';
   }
 };
-$('btn-encore').onclick = async () => {
-  $('btn-encore').hidden = true;
-  const [pose, phrase] = auHasard(ENCORE);
-  await dire(phrase, pose);
+$('choix').addEventListener('click', e => e.stopPropagation()); // un clic sur un choix n'avance pas le dialogue
+$('btn-autre').onclick = async () => {
+  $('choix').hidden = true;
+  await direAuHasard(ENCORE);
   ouvrirFormulaire();
+};
+$('btn-fin').onclick = async () => {
+  $('choix').hidden = true;
+  await direAuHasard(FIN);
 };
 
 function takeThat() {
