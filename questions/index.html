@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Questions</title>
+  <meta name="description" content="Pose ta question pour la FAQ de KA, anonymement.">
+  <meta property="og:title" content="Boîte à questions KA">
+  <meta property="og:description" content="Pose ta question pour la FAQ de KA, anonymement.">
+  <meta property="og:image" content="https://sondage-ka.github.io/assets/apercu.jpg">
+  <meta name="theme-color" content="#2b87c3">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="page-questions">
+  <button type="button" class="btn-son" id="btn-son" aria-pressed="true"></button>
+
+  <main>
+    <section id="ecran-chargement" class="ecran centre"><p>Chargement…</p></section>
+
+    <section id="ecran-scene" class="ecran centre" hidden>
+      <div class="scene temoin">
+        <img class="scene-perso" id="rene" alt="">
+        <img class="scene-bureau" src="../assets/objection/Images/Backgrounds/Preset_Desk/%5BPW%5D%20Witness.png" alt="">
+        <div class="scene-nom">René</div>
+        <p class="scene-texte" id="texte" aria-live="polite"></p>
+      </div>
+      <p class="scene-aide" id="aide">Clique sur la scène ou appuie sur Entrée pour continuer</p>
+
+      <form class="boite question-boite" id="form" hidden>
+        <div class="boite-nom">Ta question</div>
+        <textarea id="question" maxlength="1000" rows="4" required placeholder="Écris ta question pour la FAQ…" aria-label="Ta question"></textarea>
+        <div class="question-pied">
+          <span class="compteur-car" id="compteur">0 / 1000</span>
+          <button type="submit" class="btn" id="btn-envoyer">Envoyer</button>
+        </div>
+        <p class="erreur" id="erreur" role="alert" hidden></p>
+      </form>
+
+      <button type="button" class="btn" id="btn-encore" hidden>Poser une autre question</button>
+    </section>
+  </main>
+
+  <div class="take-that" id="take-that" hidden aria-hidden="true">
+    <div class="bulle" role="img" aria-label="Take that!"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="../js/config.js"></script>
+  <script src="../js/questions.js"></script>
+</body>
+</html>

@@ -29,7 +29,7 @@
         <button type="button" class="btn-petit" id="btn-deconnexion"><i data-lucide="log-out"></i> Déconnexion</button>
       </header>
       <nav class="admin-nav">
-        <a href="#s-classement">Classement</a><a href="#s-graphiques">Graphiques</a><a href="#s-votes">Votes</a><a href="#s-exports">Exports</a>
+        <a href="#s-classement">Classement</a><a href="#s-graphiques">Graphiques</a><a href="#s-votes">Votes</a><a href="#s-questions">Questions</a><a href="#s-exports">Exports</a>
       </nav>
       <p class="erreur" id="admin-erreur" role="alert" hidden></p>
 
@@ -71,6 +71,13 @@
       <section class="boite bloc" id="s-votes">
         <div class="boite-nom">Votes individuels</div>
         <div class="votes" id="votes"></div>
+      </section>
+
+      <section class="boite bloc" id="s-questions">
+        <div class="boite-nom">Boîte à questions (FAQ)</div>
+        <p class="consigne">Lien à partager : <a href="questions/" target="_blank" rel="noopener">sondage-ka.github.io/questions/</a>.
+          Pas de noms : les questions d'un même appareil ou d'une même connexion sont rangées dans le même profil.</p>
+        <div class="votes" id="questions"></div>
       </section>
 
       <section class="boite bloc" id="s-exports">

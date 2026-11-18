@@ -359,3 +359,21 @@ body:has(#ecran-accueil:not([hidden]), #ecran-message:not([hidden])) main { max-
 .choix-btn:disabled { cursor: wait; opacity: .75; }
 .portes-texte:not([hidden]) p { animation: apparition .8s ease both; }
 @keyframes apparition { from { opacity: 0; transform: translateY(8px); } }
+
+/* ---------- Boîte à questions (questions/) : René à la barre des témoins ---------- */
+.scene.temoin { background-image: url('../assets/objection/Images/Backgrounds/Preset/%5BPW%5D%20Witness.jpg'); }
+.scene-bureau { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+.scene-aide { margin: .5rem 0 0; color: var(--gris); font-size: .9rem; text-align: center; }
+.question-boite { width: min(var(--scene-l), 100%); margin-top: 1rem; }
+.question-boite textarea {
+  display: block; box-sizing: border-box; width: 100%; resize: vertical; min-height: 6.5em; padding: .6em .7em;
+  font: 1.1rem/1.35 Arial, Helvetica, sans-serif; color: #fff; background: rgba(0, 0, 0, .55);
+  border: 1px solid var(--ligne); border-radius: 0;
+}
+.question-boite textarea:focus { outline: 2px solid var(--choix); outline-offset: 1px; }
+.question-pied { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: .7rem; }
+.compteur-car { color: var(--gris); font-size: .9rem; }
+#btn-encore { margin-top: 1rem; }
+.question-admin { padding: .5rem 0; border-top: 1px solid rgba(255, 255, 255, .1); }
+.question-admin p { margin: .2rem 0 .4rem; white-space: pre-wrap; overflow-wrap: anywhere; }
+.question-date { color: var(--gris); font-size: .85rem; }

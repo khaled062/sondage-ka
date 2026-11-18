@@ -60,6 +60,48 @@ async function recharger() {
   votes = v.data;
   sondageOuvert = s.data.poll_open;
   afficher();
+  chargerQuestions();
+}
+
+// ---------- Boîte à questions ----------
+// Profils : deux questions vont ensemble si elles viennent du même navigateur OU de la même connexion (empreinte d'IP).
+function profils(qs) {
+  const parent = qs.map((_, i) => i);
+  const racine = i => parent[i] === i ? i : (parent[i] = racine(parent[i]));
+  const vu = new Map();
+  qs.forEach((q, i) => [q.navigateur && 'n' + q.navigateur, q.empreinte && 'e' + q.empreinte].filter(Boolean).forEach(cle => {
+    if (vu.has(cle)) parent[racine(i)] = racine(vu.get(cle)); else vu.set(cle, i);
+  }));
+  const groupes = new Map(); // dans l'ordre de la 1re question de chaque profil
+  qs.forEach((q, i) => { const r = racine(i); if (!groupes.has(r)) groupes.set(r, []); groupes.get(r).push(q); });
+  return [...groupes.values()];
+}
+async function chargerQuestions() {
+  const { data, error } = await db.from('questions').select('*').order('created_at');
+  if (error) return $('questions').innerHTML = '<p class="erreur">Questions impossibles à charger : ' + echapper(error.message) + '</p>';
+  if (!data.length) return $('questions').innerHTML = '<p class="consigne">Aucune question pour l\'instant.</p>';
+  $('questions').replaceChildren(...profils(data).map((qs, n) => {
+    const d = document.createElement('details');
+    d.className = 'vote';
+    d.open = true;
+    d.innerHTML = `<summary><strong>Profil ${n + 1}</strong> <span>${qs.length} question${qs.length > 1 ? 's' : ''}</span></summary>`;
+    qs.forEach(q => {
+      const p = document.createElement('div');
+      p.className = 'question-admin';
+      p.innerHTML = `<span class="question-date">${dateFr(q.created_at)}</span><p></p>
+        <button type="button" class="btn-petit danger"><i data-lucide="trash-2"></i> Supprimer</button>`;
+      p.querySelector('p').textContent = q.texte;
+      p.querySelector('button').onclick = async () => {
+        if (!confirm('Supprimer cette question ? C\'est définitif.')) return;
+        const { error } = await db.from('questions').delete().eq('id', q.id);
+        if (error) return erreur($('admin-erreur'), 'Suppression impossible : ' + error.message);
+        chargerQuestions();
+      };
+      d.append(p);
+    });
+    return d;
+  }));
+  icones();
 }
 
 // ---------- Ouvrir / fermer ----------
